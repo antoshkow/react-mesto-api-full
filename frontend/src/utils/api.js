@@ -92,9 +92,8 @@ class Api {
 }
 
 const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-23',
+  url: 'http://api.antoshkow.mesto.nomoredomains.club',
   headers: {
-    authorization: 'f40da8e2-13aa-4e11-a1ca-3b87795cc968',
     'Content-Type': 'application/json'
   }
 });

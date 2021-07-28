@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+const BASE_URL = 'http://api.antoshkow.mesto.nomoredomains.club';
 
 const checkResponse = (res) => {
   if (res.ok) {
