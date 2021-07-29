@@ -1,4 +1,4 @@
-const BASE_URL = 'http://api.antoshkow.mesto.nomoredomains.club';
+const BASE_URL = 'https://api.antoshkow.mesto.nomoredomains.club';
 
 const checkResponse = (res) => {
   if (res.ok) {
