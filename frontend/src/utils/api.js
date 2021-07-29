@@ -92,7 +92,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://api.antoshkow.mesto.nomoredomains.club',
+  url: 'https://api.antoshkow.mesto.nomoredomains.club',
   headers: {
     'Content-Type': 'application/json'
   }
