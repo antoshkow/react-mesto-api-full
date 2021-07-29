@@ -8,6 +8,7 @@ const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
+const corsHandler = require('./middlewares/corsHandler');
 const router = require('./routes/router');
 const NotFoundError = require('./errors/NotFoundError');
 const errorHandler = require('./middlewares/errorHandler');
@@ -36,6 +37,7 @@ app.use(limiter);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(corsHandler);
 
 app.use(requestLogger);
 
