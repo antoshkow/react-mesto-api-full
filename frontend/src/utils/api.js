@@ -16,7 +16,6 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers,
-      credentials: 'include'
     })
     .then(this._checkResponse);
   }
@@ -25,7 +24,6 @@ class Api {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: this._headers,
-      credentials: 'include'
     })
     .then(this._checkResponse);
   }
@@ -35,7 +33,6 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(userData),
-      credentials: 'include'
     })
     .then(this._checkResponse);
   }
@@ -45,7 +42,6 @@ class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify(cardData),
-      credentials: 'include'
     })
     .then(this._checkResponse);
   }
@@ -54,7 +50,6 @@ class Api {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this._headers,
-      credentials: 'include'
     })
     .then(this._checkResponse);
   }
@@ -63,7 +58,6 @@ class Api {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-      credentials: 'include'
     })
     .then(this._checkResponse)
   }
@@ -72,7 +66,6 @@ class Api {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-      credentials: 'include'
     })
     .then(this._checkResponse);
   }
@@ -82,7 +75,6 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(userData),
-      credentials: 'include'
     })
     .then(this._checkResponse);
   }
@@ -91,11 +83,9 @@ class Api {
     return fetch(`${this._url}/cards/likes/${cardId}`, (isLiked ? {
       method: 'DELETE',
       headers: this._headers,
-      credentials: 'include'
     } : {
       method: 'PUT',
       headers: this._headers,
-      credentials: 'include'
     }))
     .then(this._checkResponse);
   }
@@ -106,7 +96,6 @@ const api = new Api({
   headers: {
     'Content-Type': 'application/json'
   },
-  credentials: 'include'
 });
 
 export default api;
