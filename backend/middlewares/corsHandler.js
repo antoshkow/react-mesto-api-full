@@ -5,7 +5,7 @@ const ALLOWED_CORS = [
   'localhost:3000'
 ];
 
-const corsHandler = (req, res, next) => {
+module.exports = (req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
   if (ALLOWED_CORS.includes(origin)) {
@@ -32,18 +32,3 @@ const corsHandler = (req, res, next) => {
 
   next();
 };
-
-const corsOptions = (req, callback) => {
-  let corsOptions;
-  if (ALLOWED_CORS.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = {
-      credentials: true,
-      origin: true,
-    };
-  } else {
-    corsOptions = { origin: false };
-  }
-  callback(null, corsOptions);
-};
-
-module.exports = corsHandler;
