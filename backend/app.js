@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const { createUser, login } = require('./controllers/users');
@@ -11,7 +12,7 @@ const NotFoundError = require('./errors/NotFoundError');
 const errorHandler = require('./middlewares/errorHandler');
 const { signinValidation, signupValidation } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const corsHandler = require('./middlewares/corsHandler');
+const corsOptions = require('./middlewares/corsHandler');
 
 const app = express();
 
@@ -34,7 +35,7 @@ app.use(limiter);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(corsHandler);
+app.use(cors(corsOptions));
 
 app.use(requestLogger);
 
