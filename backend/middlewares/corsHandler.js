@@ -1,11 +1,11 @@
-// Массив доменов, с которых разрешены кросс-доменные запросы
-const ALLOWED_CORS = [
-  'http://antoshkow.mesto.nomoredomains.club',
-  'https://antoshkow.mesto.nomoredomains.club',
-  'localhost:3000'
-];
-
 module.exports.simpleCorsHandler = (req, res, next) => {
+  // Массив доменов, с которых разрешены кросс-доменные запросы
+  const ALLOWED_CORS = [
+    'http://antoshkow.mesto.nomoredomains.club',
+    'https://antoshkow.mesto.nomoredomains.club',
+    'localhost:3000'
+  ];
+
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
   if (ALLOWED_CORS.includes(origin)) {
