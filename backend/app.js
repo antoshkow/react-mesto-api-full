@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const cors = require('cors');
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const { createUser, login } = require('./controllers/users');
@@ -30,7 +29,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-app.use(cors({ origin: true }));
 app.use(corsSimpleHandler);
 app.use(corsHardHandler);
 
