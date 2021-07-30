@@ -12,7 +12,7 @@ const NotFoundError = require('./errors/NotFoundError');
 const errorHandler = require('./middlewares/errorHandler');
 const { signinValidation, signupValidation } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const corsOptions = require('./middlewares/corsHandler');
+const { corsSimpleHandler, corsHardHandler } = require('./middlewares/corsHandler');
 
 const app = express();
 
@@ -30,12 +30,14 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
+app.use(cors());
+app.use(corsSimpleHandler);
+app.use(corsHardHandler);
+
 app.use(helmet());
 app.use(limiter);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.use(cors(corsOptions));
 
 app.use(requestLogger);
 
