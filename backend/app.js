@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
@@ -13,7 +12,7 @@ const NotFoundError = require('./errors/NotFoundError');
 const errorHandler = require('./middlewares/errorHandler');
 const { signinValidation, signupValidation } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { corsHandler, corsOptions } = require('./middlewares/corsHandler');
+const corsHandler = require('./middlewares/corsHandler');
 
 const app = express();
 
@@ -31,7 +30,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-app.use(cors(corsOptions));
 app.use(helmet());
 app.use(limiter);
 app.use(express.urlencoded({ extended: true }));
