@@ -18,3 +18,14 @@ module.exports.сorsHandler = (req, res, next) => {
   }
   next();
 };
+
+module.exports.corsOption = {
+  credentials: true,
+  origin: function checkCorsList(origin, callback) {
+    if (ALLOWED_CORS.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
