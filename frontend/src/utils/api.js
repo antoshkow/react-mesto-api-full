@@ -17,7 +17,7 @@ class Api {
       method: 'GET',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
     })
     .then(this._checkResponse);
@@ -28,7 +28,7 @@ class Api {
       method: 'GET',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
     })
     .then(this._checkResponse);
@@ -39,7 +39,7 @@ class Api {
       method: 'PATCH',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
       body: JSON.stringify(userData),
     })
@@ -51,7 +51,7 @@ class Api {
       method: 'POST',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
       body: JSON.stringify(cardData),
     })
@@ -63,7 +63,7 @@ class Api {
       method: 'PUT',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
     })
     .then(this._checkResponse);
@@ -74,7 +74,7 @@ class Api {
       method: 'DELETE',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
     })
     .then(this._checkResponse)
@@ -85,7 +85,7 @@ class Api {
       method: 'DELETE',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
     })
     .then(this._checkResponse);
@@ -96,7 +96,7 @@ class Api {
       method: 'PATCH',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
       body: JSON.stringify(userData),
     })
@@ -108,13 +108,13 @@ class Api {
       method: 'DELETE',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
     } : {
       method: 'PUT',
       headers: {
         ...this._headers,
-        authorization: `Bearer ${token}`,
+        authorization: `${token}`,
       },
     }))
     .then(this._checkResponse);
