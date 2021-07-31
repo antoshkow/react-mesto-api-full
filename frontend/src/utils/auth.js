@@ -29,6 +29,10 @@ export const login = (email, password) => {
     body: JSON.stringify({ email, password }),
   })
   .then(checkResponse)
+  .then((data) => {
+    localStorage.setItem('jwt', data.token);
+    return data;
+  });
 }
 
 export const getContent = (token) => {

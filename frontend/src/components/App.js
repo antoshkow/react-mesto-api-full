@@ -202,7 +202,6 @@ function App() {
   function handleLogin(email, password) {
     auth.login(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
         setIsLoggedIn(true);
         setUserData({ email: email });
         history.push('/');
@@ -277,7 +276,7 @@ function App() {
           localStorage.removeItem('jwt');
         })
         .finally(() => setIsAuthChecking(false));
-      } else {
+    } else {
         setIsAuthChecking(false)
       };
   }, [history]);
