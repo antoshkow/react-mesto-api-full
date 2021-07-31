@@ -43,7 +43,6 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-// app.use(corsHandler);
 app.use(cors());
 
 // Роуты, не требующие авторизации
