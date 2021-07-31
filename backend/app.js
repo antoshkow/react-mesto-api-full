@@ -12,7 +12,6 @@ const NotFoundError = require('./errors/NotFoundError');
 const errorHandler = require('./middlewares/errorHandler');
 const { signinValidation, signupValidation } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const corsOption = require('./middlewares/corsHandler');
 
 const app = express();
 
@@ -45,7 +44,7 @@ app.get('/crash-test', () => {
 });
 
 // app.use(corsHandler);
-app.use(cors(corsOption));
+app.use(cors());
 
 // Роуты, не требующие авторизации
 app.post(
