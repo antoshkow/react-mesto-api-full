@@ -12,80 +12,110 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
     })
     .then(this._checkResponse);
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
     })
     .then(this._checkResponse);
   }
 
-  editProfile(userData) {
+  editProfile(userData, token) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(userData),
     })
     .then(this._checkResponse);
   }
 
-  addNewCard(cardData) {
+  addNewCard(cardData, token) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(cardData),
     })
     .then(this._checkResponse);
   }
 
-  like(cardId) {
+  like(cardId, token) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'PUT',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
     })
     .then(this._checkResponse);
   }
 
-  unlike(cardId) {
+  unlike(cardId, token) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
     })
     .then(this._checkResponse)
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
     })
     .then(this._checkResponse);
   }
 
-  updateAvatar(userData) {
+  updateAvatar(userData, token) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(userData),
     })
     .then(this._checkResponse);
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
+  changeLikeCardStatus(cardId, isLiked, token) {
     return fetch(`${this._url}/cards/likes/${cardId}`, (isLiked ? {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
     } : {
       method: 'PUT',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        autorization: `Bearer ${token}`,
+      },
     }))
     .then(this._checkResponse);
   }
@@ -94,7 +124,7 @@ class Api {
 const api = new Api({
   url: 'https://api.antoshkow.mesto.nomoredomains.club',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
 });
 
