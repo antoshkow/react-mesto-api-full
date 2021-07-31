@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
@@ -11,7 +12,7 @@ const NotFoundError = require('./errors/NotFoundError');
 const errorHandler = require('./middlewares/errorHandler');
 const { signinValidation, signupValidation } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { simpleCorsHandler, hardCorsHandler } = require('./middlewares/corsHandler');
+const corsHandler = require('./middlewares/corsHandler');
 
 const app = express();
 
@@ -29,9 +30,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-app.use(simpleCorsHandler);
-app.use(hardCorsHandler);
-
 app.use(helmet());
 app.use(limiter);
 app.use(express.urlencoded({ extended: true }));
@@ -45,6 +43,9 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
+app.use(corsHandler);
+app.use(cors());
 
 // Роуты, не требующие авторизации
 app.post(
