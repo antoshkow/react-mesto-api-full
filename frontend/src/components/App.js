@@ -115,8 +115,8 @@ function App() {
   }
 
   //Обработчик сабмита формы профиля
-  function handleUpdateUser(userData) {
-    api.editProfile(userData)
+  function handleUpdateUser({ name, about}) {
+    api.editProfile({ name, about })
       .then((data) => {
         setCurrentUser(data);
         setLoading(null);
@@ -218,7 +218,7 @@ function App() {
           setTooltipStatus({
             text: 'Что-то пошло не так! Попробуйте еще раз.',
             iconType: 'fail'
-        });
+          });
         }
       });
   }
@@ -249,7 +249,6 @@ function App() {
       setIsCardsLoadError();
       api.getInitialCards()
         .then((data) => {
-          console.log(data)
           setCards(data)
         })
         .catch((err) => {
@@ -272,7 +271,6 @@ function App() {
       setIsAuthChecking(true);
       auth.getContent(jwt)
         .then((res) => {
-
           setIsLoggedIn(true);
           setUserData({ email: res.email });
           history.push('/');
