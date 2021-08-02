@@ -54,7 +54,9 @@ function Main({
         <Preloader />
       )}
 
-      {isCardsError && (
+      {isCardsError === 404 ? (
+        <p className="loading">Создайте первую карточку!</p>
+      ) : (
         <p className="loading">Произошла ошибка</p>
       )}
 

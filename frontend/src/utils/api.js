@@ -12,109 +12,109 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserInfo(token) {
+  getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
     .then(this._checkResponse);
   }
 
-  getInitialCards(token) {
+  getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
     .then(this._checkResponse);
   }
 
-  editProfile(userData, token) {
+  editProfile(userData) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
       body: JSON.stringify(userData),
     })
     .then(this._checkResponse);
   }
 
-  addNewCard(cardData, token) {
+  addNewCard(cardData) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
       body: JSON.stringify(cardData),
     })
     .then(this._checkResponse);
   }
 
-  like(cardId, token) {
+  like(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
     .then(this._checkResponse);
   }
 
-  unlike(cardId, token) {
+  unlike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
     .then(this._checkResponse)
   }
 
-  deleteCard(cardId, token) {
+  deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
     .then(this._checkResponse);
   }
 
-  updateAvatar(userData, token) {
+  updateAvatar(userData) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
       body: JSON.stringify(userData),
     })
     .then(this._checkResponse);
   }
 
-  changeLikeCardStatus(cardId, isLiked, token) {
+  changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._url}/cards/likes/${cardId}`, (isLiked ? {
       method: 'DELETE',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     } : {
       method: 'PUT',
       headers: {
         ...this._headers,
-        authorization: `${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     }))
     .then(this._checkResponse);

@@ -1,6 +1,6 @@
 .loading {
   font-family: 'Inter', Arial, sans-serif;
-  font-size: 80px;
+  font-size: 50px;
   text-align: center;
 
   color: #fff;
@@ -27,5 +27,7 @@
 @media screen and (max-width: 568px) {
   .loading {
     padding: 15px 0 18px;
+
+    font-size: 28px;
   }
 }

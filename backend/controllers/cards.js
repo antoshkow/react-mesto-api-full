@@ -9,7 +9,7 @@ module.exports.getCards = (req, res, next) => {
       throw new NotFoundError('Карточки не найдены');
     })
     .then((cards) => {
-      res.status(200).send({ cards });
+      res.status(200).send(cards);
     })
     .catch(next);
 };

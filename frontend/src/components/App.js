@@ -192,8 +192,8 @@ function App() {
           setTooltipStatus({
             text: 'Что-то пошло не так! Попробуйте ещё раз.',
             iconType: 'fail'
-          });
-          setIsTooltipPopupOpen(true);
+        });
+        setIsTooltipPopupOpen(true);
         }
       });
   }
@@ -218,7 +218,7 @@ function App() {
           setTooltipStatus({
             text: 'Что-то пошло не так! Попробуйте еще раз.',
             iconType: 'fail'
-          });
+        });
         }
       });
   }
@@ -237,30 +237,34 @@ function App() {
   }
 
   React.useEffect(() => {
-    setIsCardsLoading(true);
-    setIsCardsLoadError();
-    api.getInitialCards()
-      .then((data) => {
-        setCards(data)
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsCardsLoadError(err);
-      })
-      .finally(() => {
-        setIsCardsLoading(false);
-      });
-  }, []);
-
-  React.useEffect(() => {
-    api.getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.log(err)
-      });
-  }, []);
+    if (isLoggedIn) {
+      api.getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+      setIsCardsLoading(true);
+      setIsCardsLoadError();
+      api.getInitialCards()
+        .then((data) => {
+          console.log(data)
+          setCards(data)
+        })
+        .catch((err) => {
+          if (err === 'Ошибка: 404') {
+            setIsCardsLoadError(404);
+            console.log('Карточки еще не созданы!')
+          } else {
+            setIsCardsLoadError(true);
+          }
+        })
+        .finally(() => {
+          setIsCardsLoading(false);
+        });
+    }
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -268,17 +272,19 @@ function App() {
       setIsAuthChecking(true);
       auth.getContent(jwt)
         .then((res) => {
+
           setIsLoggedIn(true);
-          setUserData({ email: res.data.email });
+          setUserData({ email: res.email });
           history.push('/');
         })
-        .catch((err) => {
+        .catch(() => {
           localStorage.removeItem('jwt');
         })
-        .finally(() => setIsAuthChecking(false));
+        .finally(() => {
+          setIsAuthChecking(false)});
     } else {
-        setIsAuthChecking(false)
-      };
+      setIsAuthChecking(false)
+    };
   }, [history]);
 
   return (
