@@ -124,7 +124,10 @@ function App() {
       })
       .catch((err) => {
         console.log(err)
-      });
+      })
+      .finally(() => {
+        setLoading(null);
+      })
     setLoading('Сохранение...');
   }
 
@@ -138,7 +141,10 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        setLoading(null);
+      })
     setLoading('Сохранение...')
   }
 
@@ -156,6 +162,7 @@ function App() {
       })
       .finally(() => {
         setIsCardsSending(false);
+        setLoading(null);
       })
     setLoading('Создание...')
   }
@@ -249,7 +256,7 @@ function App() {
       setIsCardsLoadError();
       api.getInitialCards()
         .then((data) => {
-          setCards(data)
+          setCards(data.reverse())
         })
         .catch((err) => {
           if (err === 'Ошибка: 404') {
