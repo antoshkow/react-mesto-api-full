@@ -58,7 +58,7 @@ app.post(
   createUser,
 );
 
-// Роуты, требующие авторизация
+// Роуты, требующие авторизации
 app.use('/', auth, router);
 
 app.use((req, res, next) => {
