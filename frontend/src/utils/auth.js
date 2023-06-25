@@ -1,4 +1,6 @@
-const BASE_URL = 'https://api.antoshkow.mesto.nomoredomains.club';
+const BASE_URL = process.env.NODE_ENV === 'production'
+  ? 'https://antoshkow-mesto-api-9c6cfd238e59.herokuapp.com/'
+  : 'http://localhost:3000';
 
 const checkResponse = (res) => {
   if (res.ok) {
