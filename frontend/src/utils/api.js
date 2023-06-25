@@ -122,7 +122,9 @@ class Api {
 }
 
 const api = new Api({
-  url: 'https://api.antoshkow.mesto.nomoredomains.club',
+  url: process.env.NODE_ENV === 'production'
+    ? 'https://antoshkow-mesto-api-9c6cfd238e59.herokuapp.com/'
+    : 'https://api.antoshkow.mesto.nomoredomains.club',
   headers: {
     'Content-Type': 'application/json',
   },
