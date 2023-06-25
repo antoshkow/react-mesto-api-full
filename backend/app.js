@@ -22,7 +22,7 @@ const limiter = rateLimit({
   max: 100,
 });
 
-mongoose.connect('mongodb://127.0.0.1/mestodb', {
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
