@@ -124,7 +124,7 @@ class Api {
 const api = new Api({
   url: process.env.NODE_ENV === 'production'
     ? 'https://mesto-api-32pp.onrender.com'
-    : 'http://localhost:3000',
+    : 'http://localhost:3005',
   headers: {
     'Content-Type': 'application/json',
   },
