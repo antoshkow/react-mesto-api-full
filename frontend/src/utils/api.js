@@ -123,7 +123,7 @@ class Api {
 
 const api = new Api({
   url: process.env.NODE_ENV === 'production'
-    ? 'https://antoshkow-mesto-api-9c6cfd238e59.herokuapp.com'
+    ? 'https://mesto-api-32pp.onrender.com'
     : 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
