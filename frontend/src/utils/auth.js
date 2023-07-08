@@ -1,6 +1,6 @@
 const BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://antoshkow-mesto-api-9c6cfd238e59.herokuapp.com'
-  : 'http://localhost:3000';
+  ? 'https://mesto-api-32pp.onrender.com'
+  : 'http://localhost:3005';
 
 const checkResponse = (res) => {
   if (res.ok) {
